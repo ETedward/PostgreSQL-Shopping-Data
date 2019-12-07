@@ -1,0 +1,16 @@
+version: "3"
+services:
+  database:
+    image: "postgres"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mydb
+    container_name: "postgresContainer"
+    ports:
+      - "5450:5432"
+    volumes:
+      - ./models.sql:/docker-entrypoint-initdb.d/models.sql
+      - ./sampledata.sql:/docker-entrypoint-initdb.d/sampledata.sql
+volumes:
+  dataVolume:
